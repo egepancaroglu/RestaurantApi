@@ -21,6 +21,7 @@ public class CardsInfoController {
         this.cardsInfoService = cardsInfoService;
     }
 
+
     @PostMapping
     public ResponseEntity<CardsInfo> create(@RequestBody CardsInfo cardsInfo) {
         return new ResponseEntity(cardsInfoService.create(cardsInfo), HttpStatus.OK);
