@@ -2,9 +2,11 @@ package com.example.demo.services;
 
 import com.example.demo.models.City;
 import com.example.demo.repositories.CityRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CityService {
 
     private final CityRepository cityRepository;

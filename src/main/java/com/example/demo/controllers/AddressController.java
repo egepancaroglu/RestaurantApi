@@ -4,10 +4,7 @@ import com.example.demo.models.Address;
 import com.example.demo.services.AddressService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,27 +14,38 @@ import java.util.List;
 //GET, POST, PUT, DELETE
 //PathVariable, RequestParam, RequestBody
 
-    @RestController
-    @RequestMapping("address")
-    public class AddressController {
+@RestController
+@RequestMapping("address")
+public class AddressController {
 
 
-        private final AddressService addressService;
+    private final AddressService addressService;
 
-        public AddressController(AddressService addressService) {
-            this.addressService = addressService;
-        }
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
 
-        @GetMapping
-        public ResponseEntity<List<Address>> getAll(){
-            return new ResponseEntity(addressService.findAll(), HttpStatus.OK);
-        }
+    @PostMapping
+    public ResponseEntity<Address> create(@RequestBody Address address) {
+        return new ResponseEntity(addressService.create(address), HttpStatus.OK);
+    }
 
-        @GetMapping("/{id}")
-        public ResponseEntity<Address> getById(@PathVariable Long id){
-            return new ResponseEntity(addressService.findById(id), HttpStatus.OK);
-        }
+    @GetMapping
+    public ResponseEntity<List<Address>> getAll() {
+        return new ResponseEntity(addressService.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Address> getById(@PathVariable Long id) {
+        return new ResponseEntity(addressService.findById(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Address> deleteById(@PathVariable Long id) {
+        addressService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 /////   PostMapping, HttpStatus.Created
-    }
+}
 

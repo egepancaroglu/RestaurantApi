@@ -14,25 +14,22 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "basket")
-public class Basket extends BaseDTO{
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
-        @Column(name = "Meal")
-        private String Meal;
-        @Column(name = "count")
-        private Integer count;
-        @Column(name = "totalPrice")
-        private Float totalPrice;
+public class Basket extends BaseDTO {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "count")
+    private Integer count;
+    @Column(name = "totalPrice")
+    private Float totalPrice;
 
-        @OneToOne
-        @MapsId
-        private Users users;
-        @OneToMany(mappedBy = "basket")
-        private Set<Order> order = new HashSet<>();
-        @ManyToMany(mappedBy = "basket")
-        private Set<com.example.demo.models.Meal> meal = new HashSet<>();
-
+    @OneToOne
+    @MapsId
+    private Users users;
+    @OneToMany(mappedBy = "basket")
+    private Set<Order> order = new HashSet<>();
+    @ManyToMany(mappedBy = "basket")
+    private Set<com.example.demo.models.Meal> meal = new HashSet<>();
 
 
 }
