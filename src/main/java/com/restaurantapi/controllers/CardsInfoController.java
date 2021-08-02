@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("cardsInfo")
+@RequestMapping("cards-info")
 
 public class CardsInfoController {
 

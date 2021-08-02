@@ -8,16 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//localhost:8080/address/1
-//localhost:8080/address?id=1
-//localhost:8080/address {address}
-//GET, POST, PUT, DELETE
-//PathVariable, RequestParam, RequestBody
-
 @RestController
 @RequestMapping("address")
 public class AddressController {
-
 
     private final AddressService addressService;
 
@@ -25,27 +18,33 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @PostMapping
-    public ResponseEntity<Address> create(@RequestBody Address address) {
-        return new ResponseEntity(addressService.create(address), HttpStatus.OK);
-    }
-
     @GetMapping
     public ResponseEntity<List<Address>> getAll() {
-        return new ResponseEntity(addressService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Address> getById(@PathVariable Long id) {
-        return new ResponseEntity(addressService.findById(id), HttpStatus.OK);
+    @GetMapping("{id}")
+    public ResponseEntity<Address> getAddress(@PathVariable long id) {
+
+        return new ResponseEntity<>(addressService.getById(id), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Address> addAddress(@RequestBody Address address) {
+
+        return new ResponseEntity<>(addressService.update(address), HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Address> updateAddress(@RequestBody Address address) {
+
+        return new ResponseEntity<>(addressService.update(address), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Address> deleteById(@PathVariable Long id) {
-        addressService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<String> deleteAddress(@PathVariable long id) {
+
+        return new ResponseEntity(addressService.deleteById(id), HttpStatus.OK);
     }
 
-/////   PostMapping, HttpStatus.Created
 }
-

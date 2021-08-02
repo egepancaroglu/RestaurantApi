@@ -3,6 +3,7 @@ package com.restaurantapi.services;
 import com.restaurantapi.models.Address;
 import com.restaurantapi.repositories.AddressRepository;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -17,6 +18,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @RunWith(MockitoJUnitRunner.class)
 public class AddressServiceTest {
 
+    private static final String DISTRICT_MODA = "Moda";
+    private static final String DISTRICT_CAFERAGA = "Caferaga";
+    private static final String OTHER_CONTENT_EV = "Ev";
+    private static final String OTHER_CONTENT_KAMPUS = "Kampus";
+
+
     @InjectMocks
     private AddressService addressService;
 
@@ -25,9 +32,9 @@ public class AddressServiceTest {
 
 
     @Test
-    public void whenFetchAll_thenReturnAllAddress() {
-        Address address1 = Address.builder().id(1l).build();
-        Address address2 = Address.builder().id(2l).build();
+    public void ReturnAllAddress() {
+        Address address1 = Address.builder().id(1L).build();
+        Address address2 = Address.builder().id(2L).build();
         List<Address> addressList = Arrays.asList(address1, address2);
 
         Mockito.when(addressRepository.findAll()).thenReturn(addressList);
@@ -38,7 +45,7 @@ public class AddressServiceTest {
     }
 
     @Test
-    public void whenFetchById_thenReturnAddress() {
+    public void ReturnAddress() {
         Address address = Address.builder().id(1L).district("Merkez Mahallesi").build();
 
         Mockito.when(addressRepository.getById(1L)).thenReturn(address);
@@ -49,7 +56,7 @@ public class AddressServiceTest {
     }
 
     @Test
-    public void whenAddAddress_thenReturnSavedAddress() {
+    public void ReturnSavedAddress() {
         Address address = Address.builder().build();
 
         Mockito.doReturn(address).when(addressRepository).save(address);
@@ -60,14 +67,16 @@ public class AddressServiceTest {
     }
 
     @Test
-    public void whenUpdateAddress_thenReturnUpdatedAddress() {
-        Address address = Address.builder().id(1l).build();
+    public void ReturnUpdatedAddress() {
+        Address existAddress = Address.builder().id(1L).district(DISTRICT_MODA).build();
+        Address newAddress = Address.builder().id(1L).district(DISTRICT_CAFERAGA).build();
 
-        Mockito.when(addressRepository.save(address)).thenReturn(address);
+        Mockito.when(addressRepository.getById(1L)).thenReturn(existAddress);
+        Mockito.when(addressRepository.save(newAddress)).thenReturn(newAddress);
 
-        Address updatedAddress = addressService.update(address);
-
-        assertEquals(address, updatedAddress);
+        Address updatedAddress = addressService.update(newAddress);
+        Assertions.assertNotEquals(existAddress.getDistrict(), DISTRICT_MODA);
+        Assertions.assertEquals(existAddress.getDistrict(), DISTRICT_CAFERAGA);
 
     }
 }

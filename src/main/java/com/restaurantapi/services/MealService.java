@@ -23,21 +23,43 @@ public class MealService {
         return mealRepository.getById(id);
     }
 
+    public Meal getById(Long id) {
+        return mealRepository.getById(id);
+    }
+
     public Meal create(Meal meal) {
         return mealRepository.save(meal);
     }
 
+    public List<Meal> getAll() {
+        return mealRepository.findAll();
+    }
+
+
     public Meal update(Meal meal) {
-        Meal update = mealRepository.getById((long) meal.getId());
-        if (update != null) {
-            mealRepository.save(meal);
-            return update;
+        Meal foundMeal = mealRepository.getById(meal.getId());
+        if (meal.getName() != null) {
+            foundMeal.setName(meal.getName());
+        }
+        if (meal.getPrice() != null) {
+            foundMeal.setName(meal.getName());
+        }
+        return mealRepository.save(meal);
+    }
+
+    public Meal deleteById(Long id) {
+        Meal meal = mealRepository.getById(id);
+        if (meal != null) {
+            mealRepository.deleteById(id);
+            return meal;
         }
         return meal;
     }
 
-    public void deleteById(Long id) {
+    public String delete(long id) {
+
         mealRepository.deleteById(id);
+        return "SUCCESS";
     }
 
 

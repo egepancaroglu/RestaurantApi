@@ -1,6 +1,8 @@
 package com.restaurantapi.services;
 
+import com.restaurantapi.models.Branch;
 import com.restaurantapi.models.Users;
+import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.repositories.UsersRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,18 +30,51 @@ public class UsersService {
         return usersRepository.save(users);
     }
 
+    public Users getById(Long id) {
+        return usersRepository.getById(id);
+    }
+
+    public List<Branch> getByStatus(Status status) {
+        return usersRepository.findAllByStatus(status);
+    }
+
+    public List<Users> getAll() {
+        return usersRepository.findAll();
+    }
+
+    public Users getUserByName(String name) {
+
+        return usersRepository.findByName(name);
+    }
+
     public Users update(Users users) {
-        Users update = usersRepository.getById((long) users.getId());
-        if (update != null) {
-            usersRepository.save(users);
-            return update;
+        Users foundUsers = usersRepository.getById(users.getId());
+        if (users.getPassword() != null) {
+            foundUsers.setPassword(users.getPassword());
+        }
+        if (users.getEnabled() != null) {
+            foundUsers.setEnabled(users.getEnabled());
+        }
+        if (users.getRole() != null) {
+            foundUsers.setRole(users.getRole());
+        }
+        return usersRepository.save(users);
+    }
+
+    public Users deleteById(Long id) {
+        Users users = usersRepository.getById(id);
+        if (users != null) {
+            usersRepository.deleteById(id);
+            return users;
         }
         return users;
 
     }
 
-    public void deleteById(Long id) {
+    public String delete(long id) {
+
         usersRepository.deleteById(id);
+        return "SUCCESS";
     }
 
 

@@ -1,9 +1,7 @@
 package com.restaurantapi.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.restaurantapi.models.enumerated.Role;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +9,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "users")
@@ -26,8 +25,9 @@ public class Users {
     private String enabled;
     @Column(name = "name")
     private String name;
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     @OneToMany(mappedBy = "users")
     private Set<Address> addresses = new HashSet<>();

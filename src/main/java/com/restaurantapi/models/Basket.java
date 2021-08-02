@@ -1,9 +1,6 @@
 package com.restaurantapi.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +8,7 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "basket")
@@ -21,7 +19,7 @@ public class Basket extends BaseDTO {
     @Column(name = "count")
     private Integer count;
     @Column(name = "totalPrice")
-    private Float totalPrice;
+    private Double totalPrice;
 
     @OneToOne
     @MapsId

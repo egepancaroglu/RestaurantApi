@@ -24,21 +24,39 @@ public class CityService {
         return cityRepository.getById(id);
     }
 
+    public City getById(Long id) {
+        return cityRepository.getById(id);
+    }
+
+    public List<City> getAll() {
+        return cityRepository.findAll();
+    }
+
     public City create(City city) {
         return cityRepository.save(city);
     }
 
     public City update(City city) {
-        City update = cityRepository.getById((long) city.getId());
-        if (update != null) {
-            cityRepository.save(city);
-            return update;
+        City foundCity = cityRepository.getById(city.getId());
+        if (city.getName() != null) {
+            foundCity.setName(city.getName());
+        }
+        return cityRepository.save(city);
+    }
+
+    public City deleteById(Long id) {
+        City city = cityRepository.getById(id);
+        if (city != null) {
+            cityRepository.deleteById(id);
+            return city;
         }
         return city;
     }
 
-    public void deleteById(Long id) {
+    public String delete(long id) {
+
         cityRepository.deleteById(id);
+        return "SUCCESS";
     }
 
 }

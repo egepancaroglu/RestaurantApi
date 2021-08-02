@@ -17,7 +17,7 @@ public class CardsInfoService {
         this.cardsInfoRepository = cardsInfoRepository;
     }
 
-    public List<CardsInfo> findAll(){
+    public List<CardsInfo> findAll() {
         return cardsInfoRepository.findAll();
     }
 
@@ -25,32 +25,41 @@ public class CardsInfoService {
         return cardsInfoRepository.getById(id);
     }
 
-    public CardsInfo create(CardsInfo cardsInfo) {return cardsInfoRepository.save(cardsInfo); }
+    public CardsInfo getById(Long id) {
+        return cardsInfoRepository.getById(id);
+    }
 
-    public CardsInfo update(CardsInfo cardsInfo){
-        CardsInfo update = cardsInfoRepository.getById((long) cardsInfo.getId());
-        if(update != null) {
-            cardsInfoRepository.save(cardsInfo);
-            return update;
+    public List<CardsInfo> getAll() {
+        return cardsInfoRepository.findAll();
+    }
+
+    public CardsInfo create(CardsInfo cardsInfo) {
+        return cardsInfoRepository.save(cardsInfo);
+    }
+
+    public CardsInfo update(CardsInfo cardsInfo) {
+        CardsInfo foundCardsInfo = cardsInfoRepository.getById(cardsInfo.getId());
+        if (cardsInfo.getName() != null) {
+            foundCardsInfo.setName(cardsInfo.getName());
+        }
+        return cardsInfoRepository.save(cardsInfo);
+    }
+
+    public CardsInfo deleteById(Long id) {
+        CardsInfo cardsInfo = cardsInfoRepository.getById(id);
+        if (cardsInfo != null) {
+            cardsInfoRepository.deleteById(id);
+            return cardsInfo;
         }
         return cardsInfo;
+
     }
 
-    public void deleteById(Long id){
+    public String delete(long id) {
+
         cardsInfoRepository.deleteById(id);
+        return "SUCCESS";
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

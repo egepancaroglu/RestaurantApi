@@ -28,17 +28,39 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public Order update(Order order) {
-        Order update = orderRepository.getById((long) order.getId());
-        if (update != null) {
-            orderRepository.save(order);
-            return update;
-        }
-        return order;
+    public Order getById(Long id) {
+        return orderRepository.getById(id);
     }
 
-    public void deleteById(Long id) {
+    public List<Order> getAll() {
+        return orderRepository.findAll();
+    }
+
+    public Order update(Order order) {
+        Order foundUOrder = orderRepository.getById(order.getId());
+        if (order.getAmount() != null) {
+            foundUOrder.setAmount(order.getAmount());
+        }
+        if (order.getDate() != null) {
+            foundUOrder.setDate(order.getDate());
+        }
+        return orderRepository.save(order);
+    }
+
+    public Order deleteById(Long id) {
+        Order order = orderRepository.getById(id);
+        if (order != null) {
+            orderRepository.deleteById(id);
+            return order;
+        }
+        return order;
+
+    }
+
+    public String delete(long id) {
+
         orderRepository.deleteById(id);
+        return "SUCCESS";
     }
 
 }

@@ -19,7 +19,15 @@ public class CommentsService {
         return commentsRepository.findAll();
     }
 
+    public List<Comments> getAll() {
+        return commentsRepository.findAll();
+    }
+
     public Comments findById(Long id) {
+        return commentsRepository.getById(id);
+    }
+
+    public Comments getById(Long id) {
         return commentsRepository.getById(id);
     }
 
@@ -28,15 +36,25 @@ public class CommentsService {
     }
 
     public Comments update(Comments comments) {
-        Comments update = commentsRepository.getById((long) comments.getId());
-        if (update != null) {
-            commentsRepository.save(comments);
-            return update;
+        Comments foundComments = commentsRepository.getById(comments.getId());
+        if (comments.getComment() != null) {
+            foundComments.setComment(comments.getComment());
+        }
+        return commentsRepository.save(comments);
+    }
+
+    public Comments deleteById(Long id) {
+        Comments comments = commentsRepository.getById(id);
+        if (comments != null) {
+            commentsRepository.deleteById(id);
+            return comments;
         }
         return comments;
     }
 
-    public void deleteById(Long id) {
+    public String delete(long id) {
+
         commentsRepository.deleteById(id);
+        return "SUCCESS";
     }
 }

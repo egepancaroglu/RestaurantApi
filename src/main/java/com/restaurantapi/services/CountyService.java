@@ -17,7 +17,11 @@ public class CountyService {
         this.countyRepository = countyRepository;
     }
 
-    public List<County> findAll(){
+    public List<County> findAll() {
+        return countyRepository.findAll();
+    }
+
+    public List<County> getAll() {
         return countyRepository.findAll();
     }
 
@@ -25,20 +29,34 @@ public class CountyService {
         return countyRepository.getById(id);
     }
 
+    public County getById(Long id) {
+        return countyRepository.getById(id);
+    }
+
     public County create(County county) {
         return countyRepository.save(county);
     }
 
-    public County update(County county){
-        County update = countyRepository.getById((long) county.getId());
-        if(update != null) {
-            countyRepository.save(county);
-            return update;
+    public County update(County county) {
+        County foundCity = countyRepository.getById(county.getId());
+        if (county.getName() != null) {
+            foundCity.setName(county.getName());
+        }
+        return countyRepository.save(county);
+    }
+
+    public County deleteById(Long id) {
+        County county = countyRepository.getById(id);
+        if (county != null) {
+            countyRepository.deleteById(id);
+            return county;
         }
         return county;
     }
 
-    public void deleteById(Long id){
+    public String delete(long id) {
+
         countyRepository.deleteById(id);
+        return "SUCCESS";
     }
 }

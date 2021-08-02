@@ -37,16 +37,26 @@ public class AddressService {
     }
 
     public Address update(Address address) {
-        Address update = addressRepository.getById(address.getId());
-        if (update != null) {
-            addressRepository.save(address);
-            return update;
+        Address foundAddress = addressRepository.getById(address.getId());
+        if (address.getCounty() != null) {
+            foundAddress.setCounty(address.getCounty());
         }
-        return address;
+        if (address.getDistrict() != null) {
+            foundAddress.setDistrict(address.getDistrict());
+        }
+        if (address.getOther_content() != null) {
+            foundAddress.setOther_content(address.getOther_content());
+        }
+        return addressRepository.save(address);
     }
 
-    public void deleteById(Long id) {
-        addressRepository.deleteById(id);
+    public Address deleteById(Long id) {
+        Address address = addressRepository.getById(id);
+        if (address != null) {
+            addressRepository.deleteById(id);
+            return address;
+        }
+        return address;
     }
 }
 

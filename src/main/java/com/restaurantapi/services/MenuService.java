@@ -30,16 +30,38 @@ public class MenuService {
         return menuRepository.save(menu);
     }
 
-    public Menu update(Menu menu) {
-        Menu update = menuRepository.getById((long) menu.getId());
-        if (update != null) {
-            menuRepository.save(menu);
-            return update;
-        }
-        return menu;
+    public Menu getById(Long id) {
+        return menuRepository.getById(id);
     }
 
-    public void deleteById(Long id) {
+    public List<Menu> getAll() {
+        return menuRepository.findAll();
+    }
+
+    public Menu update(Menu menu) {
+        Menu foundMenu = menuRepository.getById(menu.getId());
+        if (menu.getEnable() != null) {
+            foundMenu.setEnable(menu.getEnable());
+        }
+        if (menu.getMeal() != null) {
+            foundMenu.setMeal(menu.getMeal());
+        }
+        return menuRepository.save(menu);
+    }
+
+    public Menu deleteById(Long id) {
+        Menu menu = menuRepository.getById(id);
+        if (menu != null) {
+            menuRepository.deleteById(id);
+            return menu;
+        }
+        return menu;
+
+    }
+
+    public String delete(long id) {
+
         menuRepository.deleteById(id);
+        return "SUCCESS";
     }
 }

@@ -27,16 +27,37 @@ public class ItemsService {
         return itemsRepository.save(items);
     }
 
-    public Items update(Items items){
-        Items update = itemsRepository.getById((long) items.getId());
-        if(update != null) {
-            itemsRepository.save(items);
-            return update;
+    public Items getById(Long id) {
+        return itemsRepository.getById(id);
+    }
+
+    public List<Items> getAll() {
+        return itemsRepository.findAll();
+    }
+
+    public Items update(Items items) {
+        Items foundItems = itemsRepository.getById(items.getId());
+        if (items.getName() != null) {
+            foundItems.setName(items.getName());
+        }
+        if (items.getUnit_type() != null) {
+            foundItems.setUnit_type(items.getUnit_type());
+        }
+        return itemsRepository.save(items);
+    }
+
+    public Items deleteById(Long id) {
+        Items items = itemsRepository.getById(id);
+        if (items != null) {
+            itemsRepository.deleteById(id);
+            return items;
         }
         return items;
     }
 
-    public void deleteById(Long id){
+    public String delete(long id) {
+
         itemsRepository.deleteById(id);
+        return "SUCCESS";
     }
 }
