@@ -1,66 +1,28 @@
 package com.restaurantapi.services;
 
 import com.restaurantapi.models.Meal;
-import com.restaurantapi.repositories.MealRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MealService {
+public interface MealService {
 
-    private final MealRepository mealRepository;
+    Meal create(Meal meal);
 
-    public MealService(MealRepository mealRepository) {
-        this.mealRepository = mealRepository;
-    }
+    List<Meal> getAll();
 
-    public List<Meal> findAll() {
-        return mealRepository.findAll();
-    }
+    Meal getById(Long id);
 
-    public Meal findById(Long id) {
-        return mealRepository.getById(id);
-    }
+    Meal update(Meal meal);
 
-    public Meal getById(Long id) {
-        return mealRepository.getById(id);
-    }
+    Meal deleteById(Long id);
 
-    public Meal create(Meal meal) {
-        return mealRepository.save(meal);
-    }
+    Meal findById(Long id);
 
-    public List<Meal> getAll() {
-        return mealRepository.findAll();
-    }
+    String delete(Long id);
 
-
-    public Meal update(Meal meal) {
-        Meal foundMeal = mealRepository.getById(meal.getId());
-        if (meal.getName() != null) {
-            foundMeal.setName(meal.getName());
-        }
-        if (meal.getPrice() != null) {
-            foundMeal.setName(meal.getName());
-        }
-        return mealRepository.save(meal);
-    }
-
-    public Meal deleteById(Long id) {
-        Meal meal = mealRepository.getById(id);
-        if (meal != null) {
-            mealRepository.deleteById(id);
-            return meal;
-        }
-        return meal;
-    }
-
-    public String delete(long id) {
-
-        mealRepository.deleteById(id);
-        return "SUCCESS";
-    }
+    List<Meal> findAll();
 
 
 }

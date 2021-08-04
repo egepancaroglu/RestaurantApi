@@ -34,6 +34,11 @@ public class BasketController {
         return new ResponseEntity(basketService.findById(id), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Basket> update(@RequestBody Basket basket) {
+        return new ResponseEntity(basketService.update(basket), HttpStatus.OK);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<Basket> deleteById(@PathVariable Long id) {
         basketService.deleteById(id);

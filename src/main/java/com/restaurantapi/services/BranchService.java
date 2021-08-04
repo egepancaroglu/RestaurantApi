@@ -2,73 +2,34 @@ package com.restaurantapi.services;
 
 import com.restaurantapi.models.Branch;
 import com.restaurantapi.models.enumerated.Status;
-import com.restaurantapi.repositories.BranchRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class BranchService {
-    private BranchRepository branchRepository;
+public interface BranchService {
 
-    public Branch create(Branch branch) {
-        return branchRepository.save(branch);
-    }
 
-    public List<Branch> findAll() {
-        return branchRepository.findAll();
-    }
+    Branch create(Branch branch);
 
-    public Optional<Branch> findById(Long id) {
-        return branchRepository.findById(id);
-    }
+    List<Branch> getAll();
 
-    public List<Branch> getAll() {
-        return branchRepository.findAll();
-    }
+    Branch getById(Long id);
 
-    public Branch getById(Long id) {
-        return branchRepository.getById(id);
-    }
+    Branch update(Branch branch);
 
-    public List<Branch> getByStatus(Status status) {
-        return branchRepository.findAllByStatus(status);
-    }
+    Branch deleteById(Long id);
 
-    public Branch update(Branch branch) {
-        Branch foundBranch = branchRepository.getById(branch.getId());
-        if (branch.getStatus() != null) {
-            foundBranch.setStatus(branch.getStatus());
-        }
-        if (branch.getName() != null) {
-            foundBranch.setName(branch.getName());
-        }
-        if (branch.getRole() != null) {
-            foundBranch.setRole(branch.getRole());
-        }
-        return branchRepository.save(branch);
-    }
+    Branch findById(Long id);
 
-    public Branch deleteById(Long id) {
-        Branch branch = branchRepository.getById(id);
-        if (branch != null) {
-            branchRepository.deleteById(id);
-            return branch;
-        }
-        return branch;
-    }
+    List<Branch> findAll();
 
-    public List<Branch> getWaitingBranchList() {
+    String delete(Long id);
 
-        return branchRepository.findAllByStatus(Status.WAITING);
-    }
+    List<Branch> getByStatus(Status status);
 
-    public String delete(long id) {
+    List<Branch> getWaitingBranchList(Status status);
 
-        branchRepository.deleteById(id);
-        return "SUCCESS";
-    }
 
 
 }

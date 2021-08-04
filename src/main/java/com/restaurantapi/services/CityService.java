@@ -1,62 +1,27 @@
 package com.restaurantapi.services;
 
 import com.restaurantapi.models.City;
-import com.restaurantapi.repositories.CityRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CityService {
+public interface CityService {
 
-    private final CityRepository cityRepository;
+    City create(City city);
 
-    public CityService(CityRepository cityRepository) {
-        this.cityRepository = cityRepository;
-    }
+    List<City> getAll();
 
+    City getById(Long id);
 
-    public List<City> findAll() {
-        return cityRepository.findAll();
-    }
+    City update(City city);
 
-    public City findById(Long id) {
-        return cityRepository.getById(id);
-    }
+    City deleteById(Long id);
 
-    public City getById(Long id) {
-        return cityRepository.getById(id);
-    }
+    City findById(Long id);
 
-    public List<City> getAll() {
-        return cityRepository.findAll();
-    }
+    String delete(Long id);
 
-    public City create(City city) {
-        return cityRepository.save(city);
-    }
-
-    public City update(City city) {
-        City foundCity = cityRepository.getById(city.getId());
-        if (city.getName() != null) {
-            foundCity.setName(city.getName());
-        }
-        return cityRepository.save(city);
-    }
-
-    public City deleteById(Long id) {
-        City city = cityRepository.getById(id);
-        if (city != null) {
-            cityRepository.deleteById(id);
-            return city;
-        }
-        return city;
-    }
-
-    public String delete(long id) {
-
-        cityRepository.deleteById(id);
-        return "SUCCESS";
-    }
+    List<City> findAll();
 
 }

@@ -25,6 +25,11 @@ public class CountyController {
         return new ResponseEntity(countyService.create(county), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<County> update(@RequestBody County county) {
+        return new ResponseEntity(countyService.update(county), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<County>> getAll() {
         return new ResponseEntity(countyService.findAll(), HttpStatus.OK);

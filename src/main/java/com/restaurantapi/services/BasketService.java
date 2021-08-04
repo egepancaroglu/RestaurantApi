@@ -1,65 +1,27 @@
 package com.restaurantapi.services;
 
 import com.restaurantapi.models.Basket;
-import com.restaurantapi.repositories.BasketRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class BasketService {
+public interface BasketService {
+    Basket create(Basket basket);
 
-    private final BasketRepository basketRepository;
+    List<Basket> getAll();
 
-    public BasketService(BasketRepository basketRepository) {
-        this.basketRepository = basketRepository;
-    }
+    Basket getById(Long id);
 
-    public List<Basket> findAll() {
-        return basketRepository.findAll();
-    }
+    Basket update(Basket basket);
 
-    public Basket findById(Long id) {
-        return basketRepository.getById(id);
-    }
+    Basket deleteById(Long id);
 
-    public Basket getById(Long id) {
-        return basketRepository.getById(id);
-    }
+    Basket findById(Long id);
 
-    public List<Basket> getAll() {
-        return basketRepository.findAll();
-    }
+    List<Basket> findAll();
 
-    public Basket create(Basket basket) {
-        return basketRepository.save(basket);
-    }
-
-    public Basket update(Basket basket) {
-        Basket foundBasket = basketRepository.getById(basket.getId());
-        if (basket.getTotalPrice() != null) {
-            foundBasket.setTotalPrice(basket.getTotalPrice());
-        }
-        if (basket.getCount() != null) {
-            foundBasket.setCount(basket.getCount());
-        }
-        return basketRepository.save(basket);
-    }
-
-    public Basket deleteById(Long id) {
-        Basket basket = basketRepository.getById(id);
-        if (basket != null) {
-            basketRepository.deleteById(id);
-            return basket;
-        }
-        return basket;
-    }
-
-    public String delete(long id) {
-
-        basketRepository.deleteById(id);
-        return "SUCCESS";
-    }
+    String delete(Long id);
 
 
 }

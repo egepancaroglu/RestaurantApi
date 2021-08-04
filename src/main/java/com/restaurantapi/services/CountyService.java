@@ -2,61 +2,27 @@ package com.restaurantapi.services;
 
 
 import com.restaurantapi.models.County;
-import com.restaurantapi.repositories.CountyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CountyService {
+public interface CountyService {
 
+    County create(County county);
 
-    private final CountyRepository countyRepository;
+    List<County> getAll();
 
-    public CountyService(CountyRepository countyRepository) {
-        this.countyRepository = countyRepository;
-    }
+    County getById(Long id);
 
-    public List<County> findAll() {
-        return countyRepository.findAll();
-    }
+    County update(County county);
 
-    public List<County> getAll() {
-        return countyRepository.findAll();
-    }
+    County deleteById(Long id);
 
-    public County findById(Long id) {
-        return countyRepository.getById(id);
-    }
+    County findById(Long id);
 
-    public County getById(Long id) {
-        return countyRepository.getById(id);
-    }
+    String delete(Long id);
 
-    public County create(County county) {
-        return countyRepository.save(county);
-    }
+    List<County> findAll();
 
-    public County update(County county) {
-        County foundCity = countyRepository.getById(county.getId());
-        if (county.getName() != null) {
-            foundCity.setName(county.getName());
-        }
-        return countyRepository.save(county);
-    }
-
-    public County deleteById(Long id) {
-        County county = countyRepository.getById(id);
-        if (county != null) {
-            countyRepository.deleteById(id);
-            return county;
-        }
-        return county;
-    }
-
-    public String delete(long id) {
-
-        countyRepository.deleteById(id);
-        return "SUCCESS";
-    }
 }

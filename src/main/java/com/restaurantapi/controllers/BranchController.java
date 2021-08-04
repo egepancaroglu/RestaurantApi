@@ -2,6 +2,7 @@ package com.restaurantapi.controllers;
 
 
 import com.restaurantapi.models.Branch;
+import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.services.BranchService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,17 @@ public class BranchController {
     @GetMapping("/{id}")
     public ResponseEntity<Branch> getById(@PathVariable Long id) {
         return new ResponseEntity(branchService.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/waiting")
+    public ResponseEntity<List<Branch>> getWaiting() {
+        return new ResponseEntity(branchService.getByStatus(Status.WAITING), HttpStatus.OK);
+    }
+
+
+    @PutMapping
+    public ResponseEntity<Branch> update(@RequestBody Branch branch) {
+        return new ResponseEntity(branchService.update(branch), HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

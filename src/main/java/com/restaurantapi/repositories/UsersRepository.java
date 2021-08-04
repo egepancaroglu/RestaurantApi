@@ -1,14 +1,14 @@
 package com.restaurantapi.repositories;
 
-import com.restaurantapi.models.Branch;
 import com.restaurantapi.models.Users;
 import com.restaurantapi.models.enumerated.Status;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public interface UsersRepository extends BaseRepository<Users> {
-    List<Branch> findAllByStatus(Status status);
+    List<Users> findAllByStatus(Status status);
 
     Users findByName(String name);
 

@@ -25,6 +25,11 @@ public class MenuController {
         return new ResponseEntity(menuService.create(menu), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Menu> update(@RequestBody Menu menu) {
+        return new ResponseEntity(menuService.update(menu), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Menu>> getAll() {
         return new ResponseEntity(menuService.findAll(), HttpStatus.OK);

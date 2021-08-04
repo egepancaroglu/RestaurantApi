@@ -27,6 +27,11 @@ public class CardsInfoController {
         return new ResponseEntity(cardsInfoService.create(cardsInfo), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<CardsInfo> update(@RequestBody CardsInfo cardsInfo) {
+        return new ResponseEntity(cardsInfoService.update(cardsInfo), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<CardsInfo>> getAll() {
         return new ResponseEntity(cardsInfoService.findAll(), HttpStatus.OK);

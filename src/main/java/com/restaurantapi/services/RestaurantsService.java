@@ -3,67 +3,31 @@ package com.restaurantapi.services;
 
 import com.restaurantapi.models.Restaurants;
 import com.restaurantapi.models.enumerated.Status;
-import com.restaurantapi.repositories.RestaurantsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class RestaurantsService {
+public interface RestaurantsService {
+    Restaurants create(Restaurants restaurants);
 
-    private final RestaurantsRepository restaurantsRepository;
+    List<Restaurants> getAll();
 
-    public RestaurantsService(RestaurantsRepository restaurantsRepository) {
-        this.restaurantsRepository = restaurantsRepository;
-    }
+    Restaurants getById(Long id);
 
-    public List<Restaurants> findAll() {
-        return restaurantsRepository.findAll();
-    }
+    Restaurants update(Restaurants restaurants);
 
-    public Restaurants findById(Long id) {
-        return restaurantsRepository.getById(id);
-    }
+    Restaurants deleteById(Long id);
 
-    public List<Restaurants> getAll() {
-        return restaurantsRepository.findAll();
-    }
+    Restaurants findById(Long id);
 
-    public List<Restaurants> getByStatus(Status status) {
-        return restaurantsRepository.findAllByStatus(status);
-    }
+    List<Restaurants> findAll();
 
-    public Restaurants create(Restaurants restaurants) {
-        return restaurantsRepository.save(restaurants);
-    }
+    String delete(Long id);
 
-    public Restaurants getById(Long id) {
-        return restaurantsRepository.getById(id);
-    }
+    List<Restaurants> getByStatus(Status status);
 
-    public Restaurants update(Restaurants restaurants) {
-        Restaurants foundRestaurants = restaurantsRepository.getById(restaurants.getId());
-        if (restaurants.getStatus() != null) {
-            foundRestaurants.setStatus(restaurants.getStatus());
-        }
-        if (restaurants.getName() != null) {
-            foundRestaurants.setName(restaurants.getName());
-        }
-        return restaurantsRepository.save(restaurants);
-    }
 
-    public Restaurants deleteById(Long id) {
-        Restaurants restaurants = restaurantsRepository.getById(id);
-        if (restaurants != null) {
-            restaurantsRepository.deleteById(id);
-            return restaurants;
-        }
-        return restaurants;
-    }
 
-    public String delete(long id) {
 
-        restaurantsRepository.deleteById(id);
-        return "SUCCESS";
-    }
 }

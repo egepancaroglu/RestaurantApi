@@ -1,6 +1,8 @@
 package com.restaurantapi.controllers;
 
+import com.restaurantapi.models.Branch;
 import com.restaurantapi.models.Restaurants;
+import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.services.RestaurantsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,16 @@ public class RestaurantsController {
     @PostMapping
     public ResponseEntity<Restaurants> create(@RequestBody Restaurants restaurants) {
         return new ResponseEntity(restaurantsService.create(restaurants), HttpStatus.OK);
+    }
+
+    @GetMapping("/waiting")
+    public ResponseEntity<List<Branch>> getWaiting() {
+        return new ResponseEntity(restaurantsService.getByStatus(Status.WAITING), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Restaurants> update(@RequestBody Restaurants restaurants) {
+        return new ResponseEntity(restaurantsService.update(restaurants), HttpStatus.OK);
     }
 
     @GetMapping

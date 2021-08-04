@@ -2,64 +2,29 @@ package com.restaurantapi.services;
 
 
 import com.restaurantapi.models.CardsInfo;
-import com.restaurantapi.repositories.CardsInfoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 @Service
-public class CardsInfoService {
+public interface CardsInfoService {
 
-    private final CardsInfoRepository cardsInfoRepository;
+    CardsInfo create(CardsInfo cardsInfo);
 
-    public CardsInfoService(CardsInfoRepository cardsInfoRepository) {
-        this.cardsInfoRepository = cardsInfoRepository;
-    }
+    List<CardsInfo> getAll();
 
-    public List<CardsInfo> findAll() {
-        return cardsInfoRepository.findAll();
-    }
+    CardsInfo getById(Long id);
 
-    public CardsInfo findById(Long id) {
-        return cardsInfoRepository.getById(id);
-    }
+    CardsInfo update(CardsInfo cardsInfo);
 
-    public CardsInfo getById(Long id) {
-        return cardsInfoRepository.getById(id);
-    }
+    CardsInfo deleteById(Long id);
 
-    public List<CardsInfo> getAll() {
-        return cardsInfoRepository.findAll();
-    }
+    CardsInfo findById(Long id);
 
-    public CardsInfo create(CardsInfo cardsInfo) {
-        return cardsInfoRepository.save(cardsInfo);
-    }
+    String delete(Long id);
 
-    public CardsInfo update(CardsInfo cardsInfo) {
-        CardsInfo foundCardsInfo = cardsInfoRepository.getById(cardsInfo.getId());
-        if (cardsInfo.getName() != null) {
-            foundCardsInfo.setName(cardsInfo.getName());
-        }
-        return cardsInfoRepository.save(cardsInfo);
-    }
-
-    public CardsInfo deleteById(Long id) {
-        CardsInfo cardsInfo = cardsInfoRepository.getById(id);
-        if (cardsInfo != null) {
-            cardsInfoRepository.deleteById(id);
-            return cardsInfo;
-        }
-        return cardsInfo;
-
-    }
-
-    public String delete(long id) {
-
-        cardsInfoRepository.deleteById(id);
-        return "SUCCESS";
-    }
+    List<CardsInfo> findAll();
 
 
 }

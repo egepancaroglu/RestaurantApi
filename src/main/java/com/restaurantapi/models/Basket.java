@@ -13,6 +13,8 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity(name = "basket")
 public class Basket extends BaseDTO {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,7 +22,6 @@ public class Basket extends BaseDTO {
     private Integer count;
     @Column(name = "totalPrice")
     private Double totalPrice;
-
     @OneToOne
     @MapsId
     private Users users;

@@ -37,7 +37,6 @@ public class AddressController {
 
     @PutMapping
     public ResponseEntity<Address> updateAddress(@RequestBody Address address) {
-
         return new ResponseEntity<>(addressService.update(address), HttpStatus.OK);
     }
 

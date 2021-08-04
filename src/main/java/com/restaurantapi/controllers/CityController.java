@@ -26,6 +26,11 @@ public class CityController {
         return new ResponseEntity(cityService.create(city), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<City> update(@RequestBody City city) {
+        return new ResponseEntity(cityService.update(city), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<City>> getAll() {
         return new ResponseEntity(cityService.findAll(), HttpStatus.OK);

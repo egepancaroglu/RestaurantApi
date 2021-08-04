@@ -25,6 +25,11 @@ public class OrderController {
         return new ResponseEntity(orderService.create(order), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Order> update(@RequestBody Order order) {
+        return new ResponseEntity(orderService.update(order), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Order>> getAll() {
         return new ResponseEntity(orderService.findAll(), HttpStatus.OK);

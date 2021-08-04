@@ -26,6 +26,11 @@ public class MealController {
         return new ResponseEntity(mealService.create(meal), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Meal> update(@RequestBody Meal meal) {
+        return new ResponseEntity(mealService.update(meal), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Meal>> getAll() {
         return new ResponseEntity(mealService.findAll(), HttpStatus.OK);

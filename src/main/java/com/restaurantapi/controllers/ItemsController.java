@@ -27,6 +27,11 @@ public class ItemsController {
         return new ResponseEntity(itemsService.create(items), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Items> update(@RequestBody Items items) {
+        return new ResponseEntity(itemsService.update(items), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Items>> getAll() {
         return new ResponseEntity(itemsService.findAll(), HttpStatus.OK);

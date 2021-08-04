@@ -27,6 +27,11 @@ public class CommentsController {
         return new ResponseEntity(commentsService.create(comments), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<Comments> update(@RequestBody Comments comments) {
+        return new ResponseEntity(commentsService.update(comments), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Comments>> getAll() {
         return new ResponseEntity(commentsService.findAll(), HttpStatus.OK);

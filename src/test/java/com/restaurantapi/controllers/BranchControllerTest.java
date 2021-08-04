@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restaurantapi.models.Branch;
 import com.restaurantapi.models.Menu;
+import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.repositories.BranchRepository;
 import com.restaurantapi.services.BranchService;
 import org.assertj.core.api.Assertions;
@@ -119,7 +120,7 @@ public class BranchControllerTest {
         String URI = "/branch/waiting";
         String inputJson = this.mapToJson(branchList);
 
-        Mockito.when(branchService.getWaitingBranchList()).thenReturn(branchList);
+        Mockito.when(branchService.getWaitingBranchList(Status.WAITING)).thenReturn(branchList);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .get(URI)

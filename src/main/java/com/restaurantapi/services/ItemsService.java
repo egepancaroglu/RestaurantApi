@@ -1,63 +1,27 @@
 package com.restaurantapi.services;
 
 import com.restaurantapi.models.Items;
-import com.restaurantapi.repositories.ItemsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ItemsService {
+public interface ItemsService {
 
-    private final ItemsRepository itemsRepository;
+    Items create(Items items);
 
-    public ItemsService(ItemsRepository itemsRepository) {
-        this.itemsRepository = itemsRepository;
-    }
+    List<Items> getAll();
 
-    public List<Items> findAll(){
-        return itemsRepository.findAll();
-    }
+    Items getById(Long id);
 
-    public Items findById(Long id) {
-        return itemsRepository.getById(id);
-    }
+    Items update(Items items);
 
-    public Items create(Items items) {
-        return itemsRepository.save(items);
-    }
+    Items deleteById(Long id);
 
-    public Items getById(Long id) {
-        return itemsRepository.getById(id);
-    }
+    Items findById(Long id);
 
-    public List<Items> getAll() {
-        return itemsRepository.findAll();
-    }
+    String delete(Long id);
 
-    public Items update(Items items) {
-        Items foundItems = itemsRepository.getById(items.getId());
-        if (items.getName() != null) {
-            foundItems.setName(items.getName());
-        }
-        if (items.getUnit_type() != null) {
-            foundItems.setUnit_type(items.getUnit_type());
-        }
-        return itemsRepository.save(items);
-    }
+    List<Items> findAll();
 
-    public Items deleteById(Long id) {
-        Items items = itemsRepository.getById(id);
-        if (items != null) {
-            itemsRepository.deleteById(id);
-            return items;
-        }
-        return items;
-    }
-
-    public String delete(long id) {
-
-        itemsRepository.deleteById(id);
-        return "SUCCESS";
-    }
 }

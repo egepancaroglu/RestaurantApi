@@ -30,6 +30,16 @@ public class UsersController {
         return new ResponseEntity(usersService.findAll(), HttpStatus.OK);
     }
 
+    @GetMapping("email/{email}")
+    public ResponseEntity findByName(@PathVariable String name) {
+        return new ResponseEntity(usersService.getUserByName(name), HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Users> update(@RequestBody Users users) {
+        return new ResponseEntity(usersService.update(users), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Users> getById(@PathVariable Long id) {
         return new ResponseEntity(usersService.findById(id), HttpStatus.OK);
