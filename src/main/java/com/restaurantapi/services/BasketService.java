@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Basket;
+import com.restaurantapi.models.entity.Basket;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

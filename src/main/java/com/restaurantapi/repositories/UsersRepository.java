@@ -1,6 +1,6 @@
 package com.restaurantapi.repositories;
 
-import com.restaurantapi.models.Users;
+import com.restaurantapi.models.entity.Users;
 import com.restaurantapi.models.enumerated.Status;
 import org.springframework.stereotype.Repository;
 

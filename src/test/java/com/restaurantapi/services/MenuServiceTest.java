@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Menu;
+import com.restaurantapi.models.entity.Menu;
 import com.restaurantapi.repositories.MenuRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

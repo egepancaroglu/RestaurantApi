@@ -1,6 +1,6 @@
 package com.restaurantapi.repositories;
 
-import com.restaurantapi.models.County;
+import com.restaurantapi.models.entity.County;
 
 public interface CountyRepository extends BaseRepository<County> {
 

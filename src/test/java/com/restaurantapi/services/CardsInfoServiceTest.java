@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.CardsInfo;
+import com.restaurantapi.models.entity.CardsInfo;
 import com.restaurantapi.repositories.CardsInfoRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

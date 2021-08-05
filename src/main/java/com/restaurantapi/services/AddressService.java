@@ -1,7 +1,7 @@
 package com.restaurantapi.services;
 
 
-import com.restaurantapi.models.Address;
+import com.restaurantapi.models.entity.Address;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

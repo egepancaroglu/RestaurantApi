@@ -2,8 +2,8 @@ package com.restaurantapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restaurantapi.models.Branch;
-import com.restaurantapi.models.Menu;
+import com.restaurantapi.models.entity.Branch;
+import com.restaurantapi.models.entity.Menu;
 import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.repositories.BranchRepository;
 import com.restaurantapi.services.BranchService;

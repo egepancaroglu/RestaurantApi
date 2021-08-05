@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Comments;
+import com.restaurantapi.models.entity.Comments;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

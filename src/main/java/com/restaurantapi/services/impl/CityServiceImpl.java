@@ -1,6 +1,6 @@
 package com.restaurantapi.services.impl;
 
-import com.restaurantapi.models.City;
+import com.restaurantapi.models.entity.City;
 import com.restaurantapi.repositories.CityRepository;
 import com.restaurantapi.services.CityService;
 

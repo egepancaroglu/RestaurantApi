@@ -1,6 +1,6 @@
 package com.restaurantapi.services.impl;
 
-import com.restaurantapi.models.Basket;
+import com.restaurantapi.models.entity.Basket;
 import com.restaurantapi.repositories.BasketRepository;
 import com.restaurantapi.services.BasketService;
 

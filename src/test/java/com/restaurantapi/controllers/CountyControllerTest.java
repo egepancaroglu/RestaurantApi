@@ -2,8 +2,8 @@ package com.restaurantapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restaurantapi.models.City;
-import com.restaurantapi.models.County;
+import com.restaurantapi.models.entity.City;
+import com.restaurantapi.models.entity.County;
 import com.restaurantapi.repositories.CountyRepository;
 import com.restaurantapi.services.CountyService;
 import org.assertj.core.api.Assertions;

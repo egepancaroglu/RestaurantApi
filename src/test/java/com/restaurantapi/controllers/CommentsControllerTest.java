@@ -2,8 +2,8 @@ package com.restaurantapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restaurantapi.models.Branch;
-import com.restaurantapi.models.Comments;
+import com.restaurantapi.models.entity.Branch;
+import com.restaurantapi.models.entity.Comments;
 import com.restaurantapi.repositories.CommentsRepository;
 import com.restaurantapi.services.CommentsService;
 import org.assertj.core.api.Assertions;

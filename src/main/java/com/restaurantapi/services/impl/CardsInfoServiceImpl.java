@@ -1,6 +1,6 @@
 package com.restaurantapi.services.impl;
 
-import com.restaurantapi.models.CardsInfo;
+import com.restaurantapi.models.entity.CardsInfo;
 import com.restaurantapi.repositories.CardsInfoRepository;
 import com.restaurantapi.services.CardsInfoService;
 

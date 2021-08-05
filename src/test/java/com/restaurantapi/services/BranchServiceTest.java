@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Branch;
+import com.restaurantapi.models.entity.Branch;
 import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.repositories.BranchRepository;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Comments;
+import com.restaurantapi.models.entity.Comments;
 import com.restaurantapi.repositories.CommentsRepository;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

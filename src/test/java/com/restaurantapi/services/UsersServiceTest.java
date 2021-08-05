@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Users;
+import com.restaurantapi.models.entity.Users;
 import com.restaurantapi.models.enumerated.Role;
 import com.restaurantapi.repositories.UsersRepository;
 import org.junit.Test;

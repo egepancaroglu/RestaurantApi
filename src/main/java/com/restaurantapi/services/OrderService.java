@@ -1,6 +1,6 @@
 package com.restaurantapi.services;
 
-import com.restaurantapi.models.Order;
+import com.restaurantapi.models.entity.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

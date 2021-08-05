@@ -1,6 +1,6 @@
 package com.restaurantapi.services.impl;
 
-import com.restaurantapi.models.County;
+import com.restaurantapi.models.entity.County;
 import com.restaurantapi.repositories.CountyRepository;
 import com.restaurantapi.services.CountyService;
 

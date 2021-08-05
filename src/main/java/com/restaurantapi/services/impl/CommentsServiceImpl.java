@@ -1,6 +1,6 @@
 package com.restaurantapi.services.impl;
 
-import com.restaurantapi.models.Comments;
+import com.restaurantapi.models.entity.Comments;
 import com.restaurantapi.repositories.CommentsRepository;
 import com.restaurantapi.services.CommentsService;
 

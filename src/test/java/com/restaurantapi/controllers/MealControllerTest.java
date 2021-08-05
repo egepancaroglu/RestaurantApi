@@ -2,7 +2,7 @@ package com.restaurantapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restaurantapi.models.Meal;
+import com.restaurantapi.models.entity.Meal;
 import com.restaurantapi.repositories.MealRepository;
 import com.restaurantapi.services.MealService;
 import org.assertj.core.api.Assertions;

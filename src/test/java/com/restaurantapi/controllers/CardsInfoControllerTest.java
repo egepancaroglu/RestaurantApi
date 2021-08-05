@@ -3,7 +3,7 @@ package com.restaurantapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restaurantapi.models.CardsInfo;
+import com.restaurantapi.models.entity.CardsInfo;
 import com.restaurantapi.repositories.CardsInfoRepository;
 import com.restaurantapi.services.CardsInfoService;
 import org.assertj.core.api.Assertions;

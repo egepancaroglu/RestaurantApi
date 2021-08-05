@@ -1,6 +1,6 @@
 package com.restaurantapi.services.impl;
 
-import com.restaurantapi.models.Users;
+import com.restaurantapi.models.entity.Users;
 import com.restaurantapi.models.enumerated.Status;
 import com.restaurantapi.repositories.UsersRepository;
 import com.restaurantapi.services.UsersService;

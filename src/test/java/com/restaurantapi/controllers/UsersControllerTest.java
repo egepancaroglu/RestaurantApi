@@ -2,7 +2,7 @@ package com.restaurantapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restaurantapi.models.Users;
+import com.restaurantapi.models.entity.Users;
 import com.restaurantapi.models.enumerated.Role;
 import com.restaurantapi.repositories.UsersRepository;
 import com.restaurantapi.services.UsersService;

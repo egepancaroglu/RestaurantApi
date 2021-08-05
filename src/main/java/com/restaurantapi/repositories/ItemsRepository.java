@@ -1,6 +1,6 @@
 package com.restaurantapi.repositories;
 
-import com.restaurantapi.models.Items;
+import com.restaurantapi.models.entity.Items;
 
 public interface ItemsRepository extends BaseRepository<Items> {
 
